@@ -1,0 +1,12 @@
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 8px;
+  border: 2px solid var(--felt-light);
+  border-radius: 12px;
+}
+
+.stat__value {
+  font-size: 2rem;
+}

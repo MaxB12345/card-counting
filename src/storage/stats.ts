@@ -1,3 +1,5 @@
+import { recordPracticeDay } from './days'
+
 const STORAGE_KEY = 'card-counter:results'
 const MAX_STORED_RESULTS = 200
 
@@ -23,7 +25,9 @@ export function loadResults(): RunResult[] {
 
 /** Appends a result, keeping only the most recent entries. Storage failure is non-fatal. */
 export function saveResult(result: RunResult): void {
-  const results = [...loadResults(), result].slice(-MAX_STORED_RESULTS)
+  const previous = loadResults()
+  const results = [...previous, result].slice(-MAX_STORED_RESULTS)
+  recordPracticeDay(result.playedAt, previous)
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(results))
   } catch {
