@@ -9,6 +9,8 @@ A Hi-Lo blackjack card counting trainer, built as an installable PWA.
 - **True count** – 10 questions: given a running count and decks remaining, enter the
   true count (rounded to the nearest whole number).
 
+A **Stats** screen shows accuracy and timing per mode, and Home tracks your daily practice streak.
+
 Results are saved in the browser (`localStorage`); there is no backend.
 
 ## Develop

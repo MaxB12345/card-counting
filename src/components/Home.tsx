@@ -1,15 +1,23 @@
-import { isCorrect, loadResults } from '../storage/stats'
+import { currentStreak, practisedToday } from '../engine/streak'
+import { loadPracticeDays } from '../storage/days'
+import { loadResults } from '../storage/stats'
 
 type Props = {
   onStartFlash: () => void
   onStartCountdown: () => void
   onStartTrueCount: () => void
+  onStats: () => void
 }
 
-/** Mode picker with a short summary of saved results. */
-export function Home({ onStartFlash, onStartCountdown, onStartTrueCount }: Props) {
-  const results = loadResults()
-  const correct = results.filter(isCorrect).length
+function streakLine(days: readonly string[], now: number): string {
+  const streak = currentStreak(days, now)
+  const status = practisedToday(days, now) ? 'Practised today ✓' : 'Not practised yet today'
+  return streak === 0 ? status : `${streak} day streak · ${status}`
+}
+
+/** Mode picker with the daily streak. */
+export function Home({ onStartFlash, onStartCountdown, onStartTrueCount, onStats }: Props) {
+  const days = loadPracticeDays(loadResults())
 
   return (
     <div className="stack">
@@ -24,11 +32,10 @@ export function Home({ onStartFlash, onStartCountdown, onStartTrueCount }: Props
       <button className="btn" onClick={onStartTrueCount}>
         True count
       </button>
-      <p className="muted">
-        {results.length === 0
-          ? 'No answers yet.'
-          : `${correct} of ${results.length} answers correct`}
-      </p>
+      <button className="btn btn--secondary" onClick={onStats}>
+        Stats
+      </button>
+      <p className="muted">{streakLine(days, Date.now())}</p>
     </div>
   )
 }
