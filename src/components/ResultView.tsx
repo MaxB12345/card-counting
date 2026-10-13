@@ -17,7 +17,8 @@ export function ResultView({ result, onAgain, onHome }: Props) {
         You said <strong>{result.entered}</strong>, the count was <strong>{result.expected}</strong>.
       </p>
       <p className="muted">
-        {result.cardCount} cards in {seconds}s
+        {result.cardCount !== undefined && `${result.cardCount} cards in `}
+        {seconds}s
       </p>
       <button className="btn" onClick={onAgain}>
         Go again

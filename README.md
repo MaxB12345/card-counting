@@ -6,6 +6,8 @@ A Hi-Lo blackjack card counting trainer, built as an installable PWA.
 
 - **Flash count** – cards flash by at a chosen speed, then you enter the running count.
 - **Deck countdown** – step through one shuffled deck at your own pace; the final count is always 0.
+- **True count** – 10 questions: given a running count and decks remaining, enter the
+  true count (rounded to the nearest whole number).
 
 Results are saved in the browser (`localStorage`); there is no backend.
 

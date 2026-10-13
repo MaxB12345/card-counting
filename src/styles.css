@@ -136,3 +136,16 @@ p {
     opacity: 0;
   }
 }
+
+.scenario__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 8px;
+  border: 2px solid var(--felt-light);
+  border-radius: 12px;
+}
+
+.scenario__value {
+  font-size: 2.5rem;
+}

@@ -2,10 +2,11 @@ const STORAGE_KEY = 'card-counter:results'
 const MAX_STORED_RESULTS = 200
 
 export type RunResult = {
-  mode: 'flash' | 'countdown'
+  mode: 'flash' | 'countdown' | 'true-count'
   expected: number
   entered: number
-  cardCount: number
+  /** Cards dealt; absent for modes that don't deal cards. */
+  cardCount?: number
   durationMs: number
   playedAt: number
 }

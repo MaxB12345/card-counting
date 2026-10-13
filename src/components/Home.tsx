@@ -3,10 +3,11 @@ import { isCorrect, loadResults } from '../storage/stats'
 type Props = {
   onStartFlash: () => void
   onStartCountdown: () => void
+  onStartTrueCount: () => void
 }
 
 /** Mode picker with a short summary of saved results. */
-export function Home({ onStartFlash, onStartCountdown }: Props) {
+export function Home({ onStartFlash, onStartCountdown, onStartTrueCount }: Props) {
   const results = loadResults()
   const correct = results.filter(isCorrect).length
 
@@ -20,10 +21,13 @@ export function Home({ onStartFlash, onStartCountdown }: Props) {
       <button className="btn" onClick={onStartCountdown}>
         Deck countdown
       </button>
+      <button className="btn" onClick={onStartTrueCount}>
+        True count
+      </button>
       <p className="muted">
         {results.length === 0
-          ? 'No sessions yet.'
-          : `${correct} of ${results.length} sessions correct`}
+          ? 'No answers yet.'
+          : `${correct} of ${results.length} answers correct`}
       </p>
     </div>
   )
